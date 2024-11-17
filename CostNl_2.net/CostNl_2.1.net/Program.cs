@@ -31,7 +31,6 @@
 
                         Console.WriteLine("\nНекорректный ввод");
                     }
-
                 }
                 if (bid == hack) //Хак
                 {
