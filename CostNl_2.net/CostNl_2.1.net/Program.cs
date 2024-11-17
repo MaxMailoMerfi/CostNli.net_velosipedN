@@ -17,7 +17,7 @@
                 {
                     Console.WriteLine("\nСделайте ставку то 5$ до 100$, з шагом 5$");
                     bid = int.Parse(Console.ReadLine());
-                    if (((bid % 5 == 0) && (bid > 0) && (bid < 100)) || (bid == hack))
+                    if (((bid % 5 == 0) && (bid > 0) && (bid <= 100)) || (bid == hack))
                     {
                         Console.Clear();
                         break;
@@ -35,7 +35,7 @@
                 {
                     Console.WriteLine(kazino);
                     bid = bid_hack;
-                    Console.WriteLine($"Ля ты криса но ставка будет = {bid_hack}");
+                    Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
                     one = 7;
                     tuo = 7;
                     thre = 7;
@@ -48,20 +48,20 @@
                     tuo = random.Next(1, 10);
                     thre = random.Next(1, 10);
                 }
-                Console.WriteLine($"\n{one}{tuo}{thre}");
+                Console.WriteLine($"\n|{one}|{tuo}|{thre}|");
                 double Win;
                 //+++
                 if ((one == tuo) && (one == thre))
                 {
                     if (one == 7)
                     {
-                        Win = bid_hack * 150 * 1.5;
-                        Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                        Win = bid * 150 * 1.5;
+                        Console.WriteLine($"\nПоздравляем у вас джекпот \nВаш джекпот будет составлять = {Win}");
                     }
                     else
                     {
                         Win = bid * (one * 10) * 1.5;
-                        Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                        Console.WriteLine($"\nПоздравляем у вас три {one} = {Win}");
                     }
 
                 }
@@ -71,13 +71,13 @@
                     {
                         if (one == 7)
                         {
-                            Win = bid_hack * 15 * 1.25;
-                            Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                            Win = bid * 15 * 1.25;
+                            Console.WriteLine($"\nПоздравляем у вас Мини-Джекпот \nВаш выигрыш = {Win}$");
                         }
                         else
                         {
                             Win = bid * one * 1.25;
-                            Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                            Console.WriteLine($"\nПоздравляем у вас две {one}  \nВаш выигрыш = {Win}$");
                         }
                     }
                     if (tuo == thre)
@@ -85,12 +85,12 @@
                         if (tuo == 7)
                         {
                             Win = bid * 15 * 1.25;
-                            Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                            Console.WriteLine($"\nПоздравляем у вас Мини-Джекпот \nВаш выигрыш = {Win}$");
                         }
                         else
                         {
                             Win = bid * tuo * 1.25;
-                            Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                            Console.WriteLine($"\nПоздравляем у вас две {tuo} \nВаш выигрыш = {Win}$");
                         }
                     }
                 }
