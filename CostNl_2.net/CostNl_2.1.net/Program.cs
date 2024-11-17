@@ -41,8 +41,6 @@
                 }
                 else //Рандом главного
                 {
-                    Console.WriteLine(kazino);
-
                     one = random.Next(1, 10);
                     tuo = random.Next(1, 10);
                     thre = random.Next(1, 10);
@@ -57,7 +55,7 @@
                     //Хак
                     if (bid == bid_hack) Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
 
-                        if (n == 0)
+                    if (n == 0)
                     {
                         for (int i = 0; i < 3; i++)
                         {
@@ -131,23 +129,6 @@
 
                     Thread.Sleep(delay);
                 }
-
-
-                /* Уже не нужное
-                num[1, 0] = one;
-                num[1, 1] = tuo;
-                num[1, 2] = thre;
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.WriteLine();
-                    if (i == 1) Console.Write("-|"); else Console.Write(" |");
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Console.Write($"{num[i, j]}|");
-                    }
-                    if (i == 1) Console.Write("-");
-                }*/
-
 
                 //Вычет и вывод результата
                 double Win;
