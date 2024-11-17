@@ -5,19 +5,21 @@
         static void Main(string[] args)
         {
             Random random = new Random();
-            int bid; int one, tuo, thre;
-            int hack = 42; int bid_hack = -1; // читы (код, сколько бабок
+            int bid, one, tuo, thre; // Основные
+            int hack = 42, bid_hack = -1; // читы (код, сколько бабок
+            int[,] num = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }; // Масив для визуала
+            int delay = 500;// скорость анимации
             string kazino = "$Казино$"; //Название Которое будет сверху йобаного казино
 
             Console.WriteLine("Вас приветсвует йобаное казино");
 
             for (; ; )
             {
-                for (; ; )
+                for (; ; ) // Проверка на верную ставку
                 {
                     Console.WriteLine("\nСделайте ставку то 5$ до 100$, з шагом 5$");
                     bid = int.Parse(Console.ReadLine());
-                    if (((bid % 5 == 0) && (bid > 0) && (bid < 100)) || (bid == hack))
+                    if (((bid % 5 == 0) && (bid > 0) && (bid <= 100)) || (bid == hack))
                     {
                         Console.Clear();
                         break;
@@ -33,14 +35,12 @@
                 }
                 if (bid == hack) //Хак
                 {
-                    Console.WriteLine(kazino);
                     bid = bid_hack;
-                    Console.WriteLine($"Ля ты криса но ставка будет = {bid_hack}");
                     one = 7;
                     tuo = 7;
                     thre = 7;
                 }
-                else //Рандом
+                else //Рандом главного
                 {
                     Console.WriteLine(kazino);
 
@@ -48,20 +48,121 @@
                     tuo = random.Next(1, 10);
                     thre = random.Next(1, 10);
                 }
-                Console.WriteLine($"\n{one}{tuo}{thre}");
+
+                //Анимация прокрутки
+                Console.Clear();
+                for (int n = 0; n < 10; n++)
+                {
+                    Console.WriteLine(kazino);
+
+                    //Хак
+                    if (bid == bid_hack) Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
+
+                        if (n == 0)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                num[i, j] = random.Next(1, 10);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 2; i >= 0; i--)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (i == 0) { num[0, j] = random.Next(1, 10); }
+                                else
+                                    num[i, j] = num[i - 1, j];
+                            }
+
+                        }
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Console.WriteLine();
+                        if (i == 1) Console.Write("-|"); else Console.Write(" |");
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.Write($"{num[i, j]}|");
+                        }
+                        if (i == 1) Console.Write("-");
+                    }
+
+                    Thread.Sleep(delay);
+                    Console.Clear();
+                }
+
+                //Вывод табло
+                for (int n = 0; n < 2; n++)
+                {
+                    Console.Clear();
+                    Console.WriteLine(kazino);
+                    //Хак
+                    if (bid == bid_hack) Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
+
+                    for (int i = 2; i >= 0; i--)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            if (i == 0 && n != 0) { num[0, j] = random.Next(1, 10); }
+                            else if (i > 0)
+                                num[i, j] = num[i - 1, j];
+                            else
+                            {
+                                num[0, 0] = one;
+                                num[0, 1] = tuo;
+                                num[0, 2] = thre;
+                            }
+                        }
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Console.WriteLine();
+                        if (i == 1) Console.Write("-|"); else Console.Write(" |");
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.Write($"{num[i, j]}|");
+                        }
+                        if (i == 1) Console.Write("-");
+                    }
+
+                    Thread.Sleep(delay);
+                }
+
+
+                /* Уже не нужное
+                num[1, 0] = one;
+                num[1, 1] = tuo;
+                num[1, 2] = thre;
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.WriteLine();
+                    if (i == 1) Console.Write("-|"); else Console.Write(" |");
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Console.Write($"{num[i, j]}|");
+                    }
+                    if (i == 1) Console.Write("-");
+                }*/
+
+
+                //Вычет и вывод результата
                 double Win;
-                //+++
                 if ((one == tuo) && (one == thre))
                 {
                     if (one == 7)
                     {
-                        Win = bid_hack * 150 * 1.5;
-                        Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                        Win = bid * 150 * 1.5;
+                        Console.WriteLine($"\n\nПоздравляем у вас джекпот \nВаш джекпот будет составлять = {Win}");
                     }
                     else
                     {
                         Win = bid * (one * 10) * 1.5;
-                        Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                        Console.WriteLine($"\n\nПоздравляем у вас три {one} = {Win}");
                     }
 
                 }
@@ -71,27 +172,31 @@
                     {
                         if (one == 7)
                         {
-                            Win = bid_hack * 15 * 1.25;
-                            Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                            Win = bid * 15 * 1.25;
+                            Console.WriteLine($"\n\nПоздравляем у вас Мини-Джекпот \nВаш выигрыш = {Win}$");
                         }
                         else
                         {
                             Win = bid * one * 1.25;
-                            Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                            Console.WriteLine($"\n\nПоздравляем у вас две {one}  \nВаш выигрыш = {Win}$");
                         }
                     }
-                    if (tuo == thre)
+                    else if (tuo == thre)
                     {
                         if (tuo == 7)
                         {
                             Win = bid * 15 * 1.25;
-                            Console.WriteLine($"\nДжекпот будет составлять = {Win}");
+                            Console.WriteLine($"\n\nПоздравляем у вас Мини-Джекпот \nВаш выигрыш = {Win}$");
                         }
                         else
                         {
                             Win = bid * tuo * 1.25;
-                            Console.WriteLine($"Ля ты криса но ставка будет = {Win}");
+                            Console.WriteLine($"\n\nПоздравляем у вас две {tuo} \nВаш выигрыш = {Win}$");
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\nСочувствуем, но вам не повезло\nПопробуйте еще раз");
                     }
                 }
             }
