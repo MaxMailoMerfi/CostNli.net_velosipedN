@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace CostNl_2._2.net
+﻿namespace CostNl_2._2.net
 {
     internal class Program
     {
