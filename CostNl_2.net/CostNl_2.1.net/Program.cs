@@ -51,9 +51,9 @@
                 for (int n = 0; n < scrolls-2; n++)
                 {
                     Console.WriteLine(kazino);
-
-                    //Хак
-                    if (bid == bid_hack) Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
+                    
+                    if (bid == bid_hack)//Хак
+                        Console.WriteLine($"Ля ты знаток, но ставка будет = {bid_hack}");
 
                     if (n == 0)
                     {
