@@ -30,7 +30,6 @@ class Program
         Console.Write("Введите свой вес в кг: ");
         double weight = double.Parse(Console.ReadLine());
         Console.Clear();
-
         Console.WriteLine("Вывод в консоль полученные данные\n");
         Console.WriteLine($"ФИО: {surname} {name} {patronymic}");
         Console.WriteLine($"Возрост: {age}");

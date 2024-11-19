@@ -14,7 +14,6 @@
             Console.WriteLine("\nЦена за единицу: ");
             double price = double.Parse(Console.ReadLine());
             Console.Clear();
-
             Console.WriteLine("Информация о продукте:\n");
             Console.WriteLine($"Название: {productName}");
             Console.WriteLine($"Количество: {quantity} {unit}");
