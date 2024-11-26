@@ -1,22 +1,36 @@
-﻿namespace CostNl_2._2.net
+﻿using System.Security.Cryptography;
+
+namespace CostNl_2._2.net
 {
     internal class Program
     {
         static void Main()
         {
-            // Сделанно по заданию
+            int number; string input; // задане число
             for (; ; )
             {
-                int j = 0;
 
-                Console.Write("Введите верхний предел (N): ");
-                int input = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Числа Армстронга от 1 до {input} равны:");
+                Console.WriteLine("Числа Армстронга\n");
 
-                for (int i = 0; i < input; i++)
+                for (; ; ) // Проверка int
+                {
+                    Console.Write("\nВведите верхний предел (N): ");
+                    input = Console.ReadLine();
+                    if (int.TryParse(input, out int num))
+                    {
+                        number = int.Parse(input);
+                        break;
+                    }
+                    Console.Clear();
+                    Console.WriteLine("Числа Армстронга");
+                    Console.WriteLine("Некорректный ввод");
+                }
+                Console.WriteLine($"\nЧисла Армстронга от 1 до {number} равны:");
+                int j = 1;
+                for (int i = 0; i < number; i++)
                 {
                     int sum = 0;
-                    int digits = i.ToString().Length;
+                    int digits = i.ToString().Length; // обнаружение количества чисел
                     int num = i;
                     while (num > 0)
                     {
@@ -30,7 +44,7 @@
                     }
                 }
 
-                Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+                Console.Write("\nНажмите любую клавишу для продолжения...");
                 Console.ReadKey();
                 Console.Clear();
             }
