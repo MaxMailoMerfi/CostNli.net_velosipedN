@@ -2,29 +2,31 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Random random = new Random();
+            Random random = new ();
             for (; ; )
             {
-                int attempts = 0, namber_one = 0, namber_tuo = 0, namber_thre = 0, namber_four = 0;
+                int attempts = 0, namberOne = 1, namberTuo = 1, namberThre = 1, namberFour = 1;
 
                 // Генерация случайного 4-значного пароля
                 Console.WriteLine("Программа загадала 4-значный пароль. Попробуйте угадать его!");
-                string Password = random.Next(1000, 10000).ToString();
+                string Password = random.Next(1000, 10000).ToString(), input, check, checkTuo = "XXXX"; // Пароль, ввод пароля, сохранение проверки, помощо для проверки
 
                 for (; ; )
                 {
                     Console.Write("Введите ваш вариант: ");
 
-                    Console.WriteLine($"{namber_one}{namber_tuo}{namber_thre}{namber_four}");
-                    string input = "";
-                    input += $"{namber_one}{namber_tuo}{namber_thre}{namber_four}";
+                    //input = Console.ReadLine();
+                    Console.WriteLine($"{namberOne}{namberTuo}{namberThre}{namberFour}");
+
 
                     attempts++;// + попытка
 
-                    // Проверка з паролем
-                    string check = "";
+                    // Проверка пароля
+                    input = "";
+                    input += $"{namberOne}{namberTuo}{namberThre}{namberFour}";
+                    check = "";
                     for (int i = 0; i < 4; i++)
                     {
                         if (input[i] == Password[i])
@@ -33,21 +35,26 @@
                         }
                         else
                         {
-                            check += "X"; // Вводими "X" как не верное
+                            check += "X"; // Вводими "X" как неверное
 
+                            // переводим к следущему
                             switch (i)
                             {
                                 case 0:
-                                    namber_one++;
+                                    if (namberOne < 9) namberOne++;
+                                    else namberOne = 0;
                                     break;
                                 case 1:
-                                    namber_tuo++;
+                                    if (namberTuo < 9) namberTuo++;
+                                    else namberTuo = 0;
                                     break;
                                 case 2:
-                                    namber_thre++;
+                                    if (namberThre < 9) namberThre++;
+                                    else namberThre = 0;
                                     break;
                                 case 3:
-                                    namber_four++;
+                                    if (namberFour < 9) namberFour++;
+                                    else namberFour = 0;
                                     break;
                             }
                         }
@@ -55,7 +62,7 @@
 
                     Console.WriteLine($"Результат: {check}");
 
-                    // Якщо пароль угадано
+                    // Если пароль верный
                     if (check == Password)
                     {
                         Console.WriteLine($"Поздравляем! Вы угадали пароль: {Password}");

@@ -2,9 +2,9 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Random random = new Random();
+            Random random = new ();
 
             for (; ; )
             {
@@ -15,14 +15,14 @@
 
                 for (; ; )
                 {
-                    Console.Write("Введите ваш вариант: ");
+                    Console.Write("\nВведите ваш вариант: ");
                     string input = Console.ReadLine();
-                    attempts++;// + попытка
+                    attempts++;// + попытка)
 
                     // Проверка введеного числа
                     if (input.Length != 4 || !int.TryParse(input, out _))
                     {
-                        Console.WriteLine("Некорректный ввод. Введите 4-значное число.");
+                        Console.WriteLine("\nНекорректный ввод. Введите 4-значное число.");
                         continue;
                     }
 
@@ -32,7 +32,7 @@
                     {
                         if (input[i] == Password[i])
                         {
-                            check += input[i]; // Якщо число и позиция правильная
+                            check += input[i]; // Если число и позиция правильная
                         }
                         else
                         {

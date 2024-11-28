@@ -1,15 +1,17 @@
-﻿namespace CostNl_2._1.net
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace CostNl_2._1.net
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Random random = new Random();
+            Random random = new ();
             int bid, one, tuo, thre; // Основные
             int[,] num = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }; // Масив для визуала
-            int hack = 42, bid_hack = -1; // читы (код, сколько бабок
+            int Hack = 42, BidHack = -1; // читы (код, сколько бабок
             int delay = 400, scrolls = 10;// скорость анимации, количество прокруток
-            string kazino = "$Казино$", text_hack = "Код поражен твоими познаниями, но какой ценой это?"; //Название Которое будет сверху йобаного казино
+            string kazino = "$Казино$", text_hack = "\nКод поражен твоими познаниями, но какой ценой это?", input; //Название Которое будет сверху йобаного казино
 
 
             Console.WriteLine("Вас приветсвует йобаное казино");
@@ -19,21 +21,22 @@
                 for (; ; ) // Проверка на верную ставку
                 {
                     Console.WriteLine("\nСделайте ставку то 5$ до 100$, з шагом 5$");
-                    bid = int.Parse(Console.ReadLine());
-                    if (((bid % 5 == 0) && (bid > 0) && (bid <= 100)) || (bid == hack))
+                    input = Console.ReadLine();
+                    if (int.TryParse(input, out int namber))
                     {
-                        break;
+                        bid = int.Parse(input);
+                        if (((bid % 5 == 0) && (bid > 0) && (bid <= 100)) || (bid == Hack))
+                        {
+                            break;
+                        }
                     }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine(kazino);
-                        Console.WriteLine("\nНекорректный ввод");
-                    }
+                            Console.Clear();
+                            Console.WriteLine(kazino);
+                            Console.WriteLine("\nНекорректный ввод");
                 }
-                if (bid == hack) //Хак
+                if (bid == Hack) //Хак
                 {
-                    bid = bid_hack;
+                    bid = BidHack;
                     one = 7;
                     tuo = 7;
                     thre = 7;
@@ -51,7 +54,7 @@
                     Console.Clear();
                     Console.WriteLine(kazino);
                     
-                    if (bid == bid_hack)//Хак
+                    if (bid == BidHack)//Хак
                         Console.WriteLine(text_hack);
 
                     if (n == 0)
@@ -97,7 +100,7 @@
                     Console.Clear();
                     Console.WriteLine(kazino);
                     //Хак
-                    if (bid == bid_hack) Console.WriteLine(text_hack);
+                    if (bid == BidHack) Console.WriteLine(text_hack);
 
                     for (int i = 2; i >= 0; i--)
                     {
@@ -142,7 +145,6 @@
                         Win = bid * (one * 10) * 1.5;
                         Console.WriteLine($"\n\nПоздравляем у вас три {one} = {Win}");
                     }
-
                 }
                 else
                 {
@@ -176,11 +178,11 @@
                     {
                         Console.WriteLine("\n\nСочувствуем, но вам не повезло\nПопробуйте еще раз");
                     }
-
-                    Console.WriteLine("\nНажмите любую клавишу для продолжения...");
-                    Console.ReadKey();
-                    Console.Clear();
                 }
+                Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(kazino);
             }
         }
     }
