@@ -11,7 +11,7 @@
 
                 // Генерация случайного 4-значного пароля
                 Console.WriteLine("Программа загадала 4-значный пароль. Попробуйте угадать его!");
-                string Password = random.Next(1000, 10000).ToString(), input, check, checkTuo = "XXXX"; // Пароль, ввод пароля, сохранение проверки, помощо для проверки
+                string Password = random.Next(1000, 10000).ToString(), input, check; // Пароль, ввод пароля, сохранение проверки
 
                 for (; ; )
                 {
